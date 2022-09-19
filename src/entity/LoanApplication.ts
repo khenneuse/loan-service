@@ -3,7 +3,7 @@ import {
 } from 'typeorm';
 import { DecimalTransformer } from './transformer/decimal';
 
-@Entity()
+@Entity('loan_applications')
 export class LoanApplication {
   @PrimaryColumn({ name: 'id', type: 'uuid' })
     id!: string;
