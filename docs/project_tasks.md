@@ -16,6 +16,7 @@ Create each of these users, submit and edit a loan application on behalf of each
   - [X] Add linter
 - [X] Create git repository with initial push of the code
 - [X] Submit to repository
+- [X] Create simple unit test
 
 ### M1 - Seed data and offer business logic
 - [ ] Setup Postgres with Docker
