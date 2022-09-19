@@ -8,6 +8,7 @@
   "scripts": {
     "compile": "tsc",
     "migrate": "tsc && typeorm migration:run",
+    "seed": "psql -h localhost -d loan_service_dev -U admin -p 6500 -a -f ./sql/seed-data.sql",
     "start": "node dist/server.js",
     "test-unit": "scripts/test-unit.sh"
   },

@@ -23,7 +23,7 @@ export class SetupDatabase1663617289410 implements MigrationInterface {
         delinquencies integer NOT NULL,
         created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
         updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
-        deleted_at TIMESTAMP WITH TIME ZONE NOT NULL
+        deleted_at TIMESTAMP WITH TIME ZONE
       )
     `);
   }
