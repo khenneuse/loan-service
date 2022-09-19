@@ -2,6 +2,7 @@ import { Request, Response, Router } from 'express';
 import { getRepository, IsNull } from 'typeorm';
 import { LoanApplication } from '../entity/LoanApplication';
 import { User } from '../entity/User';
+import { makeLoanDecision } from '../lib/LoanDecider';
 
 export class UserController {
   public router: Router;
@@ -24,7 +25,7 @@ export class UserController {
       response.status(400).send(`No loan application for user id ${request.params['id']}`);
       return;
     }
-    response.send(`Found loan application for user`);
+    response.send(makeLoanDecision(loanApplication));
   }
 
   private routes() {

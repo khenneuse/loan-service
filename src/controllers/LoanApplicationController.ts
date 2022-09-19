@@ -1,6 +1,7 @@
 import { Request, Response, Router } from 'express';
 import { getRepository, IsNull } from 'typeorm';
 import { LoanApplication } from '../entity/LoanApplication';
+import { makeLoanDecision } from '../lib/LoanDecider';
 
 export class LoanApplicationController {
   public router: Router;
@@ -18,7 +19,7 @@ export class LoanApplicationController {
       response.status(400).send(`No loan application with id ${request.params['id']}`);
       return;
     }
-    response.send(`Found loan application`);
+    response.send(makeLoanDecision(loanApplication));
   }
 
   private routes() {
