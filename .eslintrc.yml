@@ -1,0 +1,23 @@
+env:
+  browser: true
+  es2021: true
+extends: ['airbnb-base','airbnb-typescript/base']
+parserOptions:
+  project: ['tsconfig.json']
+overrides:
+  # Special rules for TypeORM entity decorators
+  - files:
+      - src/entity/*.ts
+    rules:
+      new-cap: 'off'
+  # Special rules for TypeORM migrations
+  - files:
+      - src/migration/*.ts
+    rules:
+      max-len: 'off'
+  - files: 'src/**/*.ts'
+    parserOptions:
+      project: ['tsconfig.json']
+    rules:
+      no-console: 0
+rules: {}

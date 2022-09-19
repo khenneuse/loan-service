@@ -1,0 +1,10 @@
+# MacOS
+**/.DS_Store
+
+# npm/yarn
+node_modules/
+npm-*.log*
+yarn-*.log*
+
+# typescript
+dist/**
