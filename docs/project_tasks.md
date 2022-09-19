@@ -29,8 +29,8 @@ Create each of these users, submit and edit a loan application on behalf of each
   - [ ] Build business logic
 - [ ] Create offers endpoints
   - [X] Create DB entities
-  - [ ] Create Applications Controller and route `POST /applications/{id}/submit`
-  - [ ] Create Users Controller and route `POST /users/{id}/application/submit`
+  - [X] Create Applications Controller and route `POST /applications/{id}/submit`
+  - [X] Create Users Controller and route `POST /users/{id}/application/submit`
 - [ ] Test logic with seed data data
 
 ### M2 - Add other endpoints
