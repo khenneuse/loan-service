@@ -1,0 +1,14 @@
+
+version: '3.8'
+services:
+  postgres:
+    image: postgres:14-alpine
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password123
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - '6500:5432'
+volumes:
+  postgres:
