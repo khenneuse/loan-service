@@ -7,15 +7,18 @@
   "license": "MIT",
   "scripts": {
     "compile": "tsc",
+    "migrate": "tsc && typeorm migration:run",
     "start": "node dist/server.js",
     "test-unit": "scripts/test-unit.sh"
   },
   "dependencies": {
+    "decimal.js": "^10.4.1",
     "express": "^4.18.1",
     "pg": "^8.8.0",
-    "typeorm": "^0.3.9"
+    "typeorm": "^0.2.0"
   },
   "devDependencies": {
+    "@types/decimal.js": "^7.4.0",
     "@types/express": "^4.17.14",
     "@types/jest": "^29",
     "@types/node": "^16",

@@ -1,0 +1,24 @@
+{
+   "type": "postgres",
+   "host": "localhost",
+   "port": 6500,
+   "username": "admin",
+   "password": "password123",
+   "database": "loan_service_dev",
+   "synchronize": false,
+   "logging": false,
+   "entities": [
+      "dist/src/entity/**/*.js"
+   ],
+   "migrations": [
+      "dist/src/migrations/**/*.js"
+   ],
+   "subscribers": [
+      "dist/src/subscriber/**/*.js"
+   ],
+   "cli": {
+      "entitiesDir": "src/entity",
+      "migrationsDir": "src/migrations",
+      "subscribersDir": "src/subscriber"
+   }
+}
