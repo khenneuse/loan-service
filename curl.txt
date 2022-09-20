@@ -1,0 +1,19 @@
+# All Users
+curl http://localhost:3000/users
+
+# Specific User
+curl http://localhost:3000/users/74856012-7e1d-11ec-82de-062205c32318
+
+# Create User without id
+curl \
+ -X POST \
+ -H "Content-Type: application/json" \
+ --data '{"name":"Raoul Duke"}' \
+ http://localhost:3000/users
+
+# Create User with id
+curl \
+ -X POST \
+ -H "Content-Type: application/json" \
+ --data '{"id":"437f64ea-21a6-40c6-8917-cd29ff7f9682","name":"Fred Fenster"}' \
+ http://localhost:3000/users
