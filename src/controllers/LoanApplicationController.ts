@@ -19,6 +19,12 @@ export class LoanApplicationController {
       response.status(400).send(`No loan application with id ${request.params['id']}`);
       return;
     }
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    const { inspect } = require('util');
+    // eslint-disable-next-line no-console
+    console.log(`-------------------------------------
+    ${inspect({ loanApplication }, { depth: 4 })}
+    `);
     response.send(makeLoanDecision(loanApplication));
   }
 
