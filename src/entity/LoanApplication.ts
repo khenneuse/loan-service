@@ -35,6 +35,9 @@ export class LoanApplication {
   @Column({ name: 'bankruptcies', type: 'integer' })
     bankruptcies!: number;
 
+  @Column({ name: 'delinquencies', type: 'integer' })
+    delinquencies!: number;
+
   @Column({
     name: 'vehicle_value',
     type: 'numeric',
@@ -52,9 +55,6 @@ export class LoanApplication {
     transformer: new ColumnNumericTransformer(),
   })
     loanAmount!: number;
-
-  @Column({ name: 'delinquencies', type: 'integer' })
-    delinquencies!: number;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamptz' })
     createdAt!: Date;
