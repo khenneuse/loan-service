@@ -11,6 +11,19 @@ export class LoanApplicationController {
     this.routes();
   }
 
+  private async delete(request: Request, response: Response) {
+    const { id } = request.params;
+    const loanApplication = await getRepository(LoanApplication).findOne({
+      where: { id, deletedAt: IsNull() },
+    });
+    if (!loanApplication) {
+      response.status(400).send(`No loan application with id ${id}`);
+      return;
+    }
+    await getRepository(LoanApplication).softRemove(loanApplication);
+    response.send(`Loan application ${id} was deleted`);
+  }
+
   private async submit(request: Request, response: Response) {
     const { id } = request.params;
     const loanApplication = await getRepository(LoanApplication).findOne({
@@ -60,6 +73,7 @@ export class LoanApplicationController {
   }
 
   private routes() {
+    this.router.delete('/:id', this.delete);
     this.router.patch('/:id', this.update);
     this.router.post('/:id/submit', this.submit);
   }

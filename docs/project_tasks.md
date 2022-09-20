@@ -43,7 +43,7 @@ Create each of these users, submit and edit a loan application on behalf of each
   - [X] `POST /users/{id}/applications`
   - [X] `PATCH /applications/{id}`
   - [ ] `PATCH /users/{id}/application`
-  - [ ] `DELETE /applications/{id}`
+  - [X] `DELETE /applications/{id}`
   - [ ] `DELETE /users/{id}/application`
 
 ### MQ - Clean up items

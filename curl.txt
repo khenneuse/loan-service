@@ -45,3 +45,8 @@ curl \
  -H "Content-Type: application/json" \
  --data '{"bankruptcies":0,"delinquencies":0}' \
  http://localhost:3000/applications/8e4ebafd-79d7-40a5-9371-7241be84ed77
+
+# Soft Delete a loan application
+curl \
+  -X DELETE \
+  http://localhost:3000/applications/83cf9ed9-c46e-468c-b73d-70ccb75cbe8e

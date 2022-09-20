@@ -1,5 +1,5 @@
 import {
-  Entity, Column, PrimaryColumn, CreateDateColumn, UpdateDateColumn,
+  Entity, Column, PrimaryColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn,
 } from 'typeorm';
 import { ColumnNumericTransformer } from './transformer/ColumnNumericTransformer';
 
@@ -62,9 +62,6 @@ export class LoanApplication {
   @UpdateDateColumn({ name: 'updated_at', type: 'timestamptz' })
     updatedAt!: Date;
 
-  // This column is manually managed at the application level,
-  // unlike created_at and updated_at. typeorm doesn't support soft deletes :'(
-  // https://github.com/typeorm/typeorm/issues/534
-  @Column({ name: 'deleted_at', type: 'timestamptz', nullable: true })
+  @DeleteDateColumn({ name: 'deleted_at', type: 'timestamptz', nullable: true })
     deletedAt?: Date;
 }
