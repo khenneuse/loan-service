@@ -16,10 +16,10 @@ export class UserController {
 
   private async createUser(request: Request, response: Response) {
     const { id, name } = request.body;
-    const user = new User();
-    user.id = id || uuidV4();
-    user.name = name;
-    const result = await getRepository(User).save(user);
+    const result = await getRepository(User).save({
+      id: id || uuidV4(),
+      name,
+    });
     console.log(`User created ${inspect(result)}`);
     response.send(result);
   }
