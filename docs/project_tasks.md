@@ -51,6 +51,6 @@ Create each of these users, submit and edit a loan application on behalf of each
 - [X] Write up assumptions
 - [X] Write up deployment instructions
 - [X] Write up technical choices
-- [ ] Write up areas that were punted
-- [ ] Write up other features to add
-- [ ] Clean up and add to README.md
+- [X] Write up areas that were punted
+- [X] Write up other features to add
+- [X] Clean up and add to README.md
