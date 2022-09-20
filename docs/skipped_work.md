@@ -32,6 +32,9 @@ A simple table could have been created to store the loan decisions when they wer
 Not storing the decisions does have the advantage that you do not need to worry about changes in the loan application invalidating the decision.
 The interaction between loan applications and stored loan decisions could lead to trying to store the history. That would need to be considered carefully before doing. A _simple_ table tracking changes can work though it needs to be balanced against the amount of changes that could occur.
 
+### Configuration for environments
+To that the prototype done I chose to skip configuration.  This meant hard-coding fields for the database and the server port.  There are some options for libraries like `config` and `dotenv`
+
 ### Relations specified in ORM and/or DB
 Both ORMs and databases allow for the specifying of the relations between entities.
 In the database it can protect you from improper setup. Though it seems to be ignored by many developers.
@@ -41,6 +44,8 @@ I have seen the joins make it easy to put data together but create performance p
 Lately I have personally moved to small queries that look up one item and avoid joins. It allows for moving the data out of the database and into another service or to another storage medium like Dynamo DB. The performance can get a bump because it is not deserializing the data in the joins and trying to make sense of it.
 All are points to discuss in a team setting.
 
+### Database transactions
+For a prototype this is an easy thing to skip. Currently the code has single writes so transactions are not needed.  In more robust code you should setup up transactions even in the single write cases. This is because it is too easy to forget later when adding another database write. Correcting the corrupt data later can be dreadful.
 ## Critical for production
 ### Authentication and Authorization
 I saw several examples of how to _quickly_ add AuthN to a service. AuthN and AuthZ need to be thought out and not just thrown on to a service.
