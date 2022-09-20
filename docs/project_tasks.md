@@ -41,7 +41,7 @@ Create each of these users, submit and edit a loan application on behalf of each
   - [X] `GET /users/{id}`
 - [ ] Build remaining Applications endpoints
   - [X] `POST /users/{id}/applications`
-  - [ ] `PATCH /applications/{id}`
+  - [X] `PATCH /applications/{id}`
   - [ ] `PATCH /users/{id}/application`
   - [ ] `DELETE /applications/{id}`
   - [ ] `DELETE /users/{id}/application`

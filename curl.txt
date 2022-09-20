@@ -31,3 +31,17 @@ curl \
  -H "Content-Type: application/json" \
  --data '{"creditScore":765,"monthlyDebt":0,"monthlyIncome":8000.00,"bankruptcies":0,"delinquencies":0,"vehicleValue":45000.00,"loanAmount":30000.00}' \
  http://localhost:3000/users/fb414ddc-6e3b-4859-bb45-56d7389a64ba/applications
+
+# Upate two fields on an existing application
+curl \
+ -X PATCH \
+ -H "Content-Type: application/json" \
+ --data '{"bankruptcies":1,"delinquencies":1}' \
+ http://localhost:3000/applications/8e4ebafd-79d7-40a5-9371-7241be84ed77
+
+# Update the two fields back
+curl \
+ -X PATCH \
+ -H "Content-Type: application/json" \
+ --data '{"bankruptcies":0,"delinquencies":0}' \
+ http://localhost:3000/applications/8e4ebafd-79d7-40a5-9371-7241be84ed77

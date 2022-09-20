@@ -12,17 +12,55 @@ export class LoanApplicationController {
   }
 
   private async submit(request: Request, response: Response) {
+    const { id } = request.params;
     const loanApplication = await getRepository(LoanApplication).findOne({
-      where: { id: request.params['id'], deletedAt: IsNull() },
+      where: { id, deletedAt: IsNull() },
     });
     if (!loanApplication) {
-      response.status(400).send(`No loan application with id ${request.params['id']}`);
+      response.status(400).send(`No loan application with id ${id}`);
       return;
     }
     response.send(makeLoanDecision(loanApplication));
   }
 
+  private async update(request: Request, response: Response) {
+    const { id } = request.params;
+    const loanApplication = await getRepository(LoanApplication).findOne({
+      where: { id, deletedAt: IsNull() },
+    });
+    if (!loanApplication) {
+      response.status(400).send(`No loan application with id ${id}`);
+      return;
+    }
+    const {
+      creditScore, monthlyDebt, monthlyIncome,
+      bankruptcies, delinquencies,
+      vehicleValue, loanAmount,
+    } = request.body;
+    const updatedFields = {
+      creditScore,
+      monthlyDebt,
+      monthlyIncome,
+      bankruptcies,
+      delinquencies,
+      vehicleValue,
+      loanAmount,
+    };
+
+    // Get only modified values
+    Object.keys(updatedFields).forEach((key) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      (updatedFields as any)[key] === undefined ? delete (updatedFields as any)[key] : {};
+    });
+    const updatedLoanApplication = await getRepository(LoanApplication).save({
+      ...loanApplication,
+      ...updatedFields,
+    });
+    response.send(updatedLoanApplication);
+  }
+
   private routes() {
+    this.router.patch('/:id', this.update);
     this.router.post('/:id/submit', this.submit);
   }
 }
