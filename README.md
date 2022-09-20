@@ -1,11 +1,10 @@
 # Loan Service
-This service does basic loan mechanics for vehicle loans. It implements a
-series of rules for deciding if a loan application is to be accepted. If
-the loan is accepted the service will return the details about the loan.
-This includes the APR and monthly payments for the loan.
+This service does basic loan mechanics for vehicle loans. It implements a series of rules for deciding if a loan application is to be accepted. If the loan is accepted the service will return the details about the loan. This includes the APR and monthly payments for the loan.
 
 [Project Task Breakdown](docs/project_tasks.md)
 [General Definitions](docs/definitions.md)
+[Assumptions](docs/assumptions.md)
+[Tech Choices](docs/tech_choices.md)
 
 ## Deployment Instructions
 This service was built to utilize `docker-compose`. This means that at least the database setup is handled there.
