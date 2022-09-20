@@ -1,7 +1,7 @@
 import {
   Entity, Column, PrimaryColumn, CreateDateColumn, UpdateDateColumn,
 } from 'typeorm';
-import { DecimalTransformer } from './transformer/decimal';
+import { ColumnNumericTransformer } from './transformer/ColumnNumericTransformer';
 
 @Entity('loan_applications')
 export class LoanApplication {
@@ -15,12 +15,20 @@ export class LoanApplication {
     creditScore!: number;
 
   @Column({
-    name: 'monthly_debt', type: 'numeric', precision: 9, scale: 2, transformer: new DecimalTransformer(),
+    name: 'monthly_debt',
+    type: 'numeric',
+    precision: 9,
+    scale: 2,
+    transformer: new ColumnNumericTransformer(),
   })
     monthlyDebt!: number;
 
   @Column({
-    name: 'monthly_income', type: 'numeric', precision: 9, scale: 2, transformer: new DecimalTransformer(),
+    name: 'monthly_income',
+    type: 'numeric',
+    precision: 9,
+    scale: 2,
+    transformer: new ColumnNumericTransformer(),
   })
     monthlyIncome!: number;
 
@@ -28,12 +36,20 @@ export class LoanApplication {
     bankruptcies!: number;
 
   @Column({
-    name: 'vehicle_value', type: 'numeric', precision: 9, scale: 2, transformer: new DecimalTransformer(),
+    name: 'vehicle_value',
+    type: 'numeric',
+    precision: 9,
+    scale: 2,
+    transformer: new ColumnNumericTransformer(),
   })
     vehicleValue!: number;
 
   @Column({
-    name: 'loan_amount', type: 'numeric', precision: 9, scale: 2, transformer: new DecimalTransformer(),
+    name: 'loan_amount',
+    type: 'numeric',
+    precision: 9,
+    scale: 2,
+    transformer: new ColumnNumericTransformer(),
   })
     loanAmount!: number;
 

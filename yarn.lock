@@ -678,13 +678,6 @@
   dependencies:
     "@types/node" "*"
 
-"@types/decimal.js@^7.4.0":
-  version "7.4.0"
-  resolved "https://packages.convoy.com/artifactory/api/npm/npm/@types/decimal.js/-/decimal.js-7.4.0.tgz#0289c1903c31a4e9b94caa741916a9bc64d1c585"
-  integrity sha512-TiP45voN8GdDib9QkkdMprTfs86xxHInqTxNPSGbF0m6X0LXVBjkFEKbbL9fqm4ZPoVFkG1p4F26on2MWGvW5w==
-  dependencies:
-    decimal.js "*"
-
 "@types/express-serve-static-core@^4.17.18":
   version "4.17.31"
   resolved "https://packages.convoy.com/artifactory/api/npm/npm/@types/express-serve-static-core/-/express-serve-static-core-4.17.31.tgz#a1139efeab4e7323834bb0226e62ac019f474b2f"
@@ -1349,11 +1342,6 @@ debug@^4.1.0, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2, debug@^4.3.4:
   integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
   dependencies:
     ms "2.1.2"
-
-decimal.js@*, decimal.js@^10.4.1:
-  version "10.4.1"
-  resolved "https://packages.convoy.com/artifactory/api/npm/npm/decimal.js/-/decimal.js-10.4.1.tgz#be75eeac4a2281aace80c1a8753587c27ef053e7"
-  integrity sha512-F29o+vci4DodHYT9UrR5IEbfBw9pE5eSapIJdTqXK5+6hq+t8VRxwQyKlW2i+KDKFkkJQRvFyI/QXD83h8LyQw==
 
 dedent@^0.7.0:
   version "0.7.0"
