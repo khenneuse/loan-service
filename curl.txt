@@ -17,3 +17,17 @@ curl \
  -H "Content-Type: application/json" \
  --data '{"id":"437f64ea-21a6-40c6-8917-cd29ff7f9682","name":"Fred Fenster"}' \
  http://localhost:3000/users
+
+# Create a loan application
+curl \
+ -X POST \
+ -H "Content-Type: application/json" \
+ --data '{"creditScore":765,"monthlyDebt":0,"monthlyIncome":8000.00,"bankruptcies":0,"delinquencies":0,"vehicleValue":45000.00,"loanAmount":30000.00}' \
+ http://localhost:3000/users/437f64ea-21a6-40c6-8917-cd29ff7f9682/applications
+
+# Attempt to create a loan application but there is an existing application
+curl \
+ -X POST \
+ -H "Content-Type: application/json" \
+ --data '{"creditScore":765,"monthlyDebt":0,"monthlyIncome":8000.00,"bankruptcies":0,"delinquencies":0,"vehicleValue":45000.00,"loanAmount":30000.00}' \
+ http://localhost:3000/users/fb414ddc-6e3b-4859-bb45-56d7389a64ba/applications

@@ -34,13 +34,13 @@ Create each of these users, submit and edit a loan application on behalf of each
 - [X] Test logic with seed data
 
 ### M2 - Add other endpoints
-- [ ] Only allow one application to be submitted per user
+- [X] Only allow one application to be submitted per user
 - [X] Build remaining Users endpoints
   - [X] `POST /users`
   - [X] `GET /users`
   - [X] `GET /users/{id}`
 - [ ] Build remaining Applications endpoints
-  - [ ] `POST /users/{id}/applications`
+  - [X] `POST /users/{id}/applications`
   - [ ] `PATCH /applications/{id}`
   - [ ] `PATCH /users/{id}/application`
   - [ ] `DELETE /applications/{id}`
