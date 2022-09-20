@@ -37,7 +37,7 @@ export function makeLoanDecision(loanApplication: LoanApplication): LoanDecision
   if (exceedsDebtToIncomeRatio(monthlyDebt, monthlyIncome, monthlyPayment)) {
     return buildRejections(['Debt-to-income ratio exceeds 60%']);
   }
-  return buildAcceptance(0.10);
+  return buildAcceptance(apr, monthlyPayment);
 }
 
 function getInitialRejectionReasonIfAny(loanApplication: LoanApplication): string [] {
@@ -61,11 +61,11 @@ function buildRejections(reasons: string[]): LoanReject {
   return { accepted: false, reasons };
 }
 
-function buildAcceptance(apr: number): LoanAccept {
+function buildAcceptance(apr: number, monthlyPayment: number): LoanAccept {
   return {
     accepted: true,
     apr,
-    monthlyPayment: 100,
+    monthlyPayment,
     termLengthMonths: 72,
   };
 }

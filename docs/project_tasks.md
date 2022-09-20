@@ -24,14 +24,14 @@ Create each of these users, submit and edit a loan application on behalf of each
   - [X] Create TypeORM migration to build tables
   - [X] Run migration
   - [X] Create seed data file and script for database
-- [ ] Create Offer Business Logic
-  - [ ] Create tests for logic
-  - [ ] Build business logic
-- [ ] Create offers endpoints
+- [X] Create Offer Business Logic
+  - [X] Create tests for logic
+  - [X] Build business logic
+- [X] Create offers endpoints
   - [X] Create DB entities
   - [X] Create Applications Controller and route `POST /applications/{id}/submit`
   - [X] Create Users Controller and route `POST /users/{id}/application/submit`
-- [ ] Test logic with seed data data
+- [X] Test logic with seed data
 
 ### M2 - Add other endpoints
 - [ ] Build remaining Users endpoints

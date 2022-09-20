@@ -11,7 +11,7 @@ describe('LoanDecider', () => {
         userId: 'user-id',
         creditScore: 802,
         monthlyDebt: 1_000.00,
-        monthlyIncome: 20_000.00,
+        monthlyIncome: 10_000.00,
         bankruptcies: 0,
         delinquencies: 0,
         vehicleValue: 45_000.00,
@@ -19,19 +19,40 @@ describe('LoanDecider', () => {
       } as LoanApplication;
     });
 
-    describe.skip('loan acceptance cases', () => {
+    describe('loan acceptance cases', () => {
       it('low APR', () => {
         const decision = makeLoanDecision(loanApplication);
         expect(decision).toEqual({
           accepted: true,
           apr: 0.02,
-          monthlyPayment: 320.00,
+          monthlyPayment: 368.76,
+          termLengthMonths: 72,
+        });
+      });
+
+      it('mid APR', () => {
+        const decision = makeLoanDecision({ ...loanApplication, creditScore: 778 });
+        expect(decision).toEqual({
+          accepted: true,
+          apr: 0.05,
+          monthlyPayment: 402.62,
+          termLengthMonths: 72,
+        });
+      });
+
+      it('high APR', () => {
+        const decision = makeLoanDecision({ ...loanApplication, creditScore: 715 });
+        expect(decision).toEqual({
+          accepted: true,
+          apr: 0.08,
+          monthlyPayment: 438.33,
           termLengthMonths: 72,
         });
       });
 
       it('one delinquency', () => {
-
+        const decision = makeLoanDecision({ ...loanApplication, delinquencies: 1 });
+        expect(decision.accepted).toBeTruthy();
       });
     });
 
