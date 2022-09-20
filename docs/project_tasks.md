@@ -47,9 +47,9 @@ Create each of these users, submit and edit a loan application on behalf of each
   - [ ] `DELETE /users/{id}/application`
 
 ### MQ - Clean up items
-- [ ] Write up definitions
+- [X] Write up definitions
 - [ ] Write up assumptions
-- [ ] Write up deployment instructions
+- [X] Write up deployment instructions
 - [ ] Write up areas that were punted
 - [ ] Write up other features to add
 - [ ] Clean up and add to README.md
