@@ -12,6 +12,16 @@ export class UserController {
     this.routes();
   }
 
+  private async _delete(request: Request, response: Response) {
+    const { id } = request.params;
+    if (!id) {
+      response.status(400).send('Id is required to delete a loan application');
+      return;
+    }
+    const deleted = loanApplicationService.deleteLoanApplicationByUserId(id);
+    response.send(`Loan application for userId ${id} was deleted: ${deleted}`);
+  }
+
   private async _createUser(request: Request, response: Response) {
     const { id, name } = request.body;
     const result = await userService.createUser(name, id);
@@ -91,10 +101,45 @@ export class UserController {
     response.send(makeLoanDecision(loanApplication));
   }
 
+  private async _updateLoanApplication(request: Request, response: Response) {
+    const { id } = request.params;
+    if (!id) {
+      response.status(400).send('User Id is required to update a loan application');
+      return;
+    }
+    const loanApplication = await loanApplicationService.getLoanApplicationByUserId(id);
+    if (!loanApplication) {
+      response.status(400).send(`No loan application for userId ${id}`);
+      return;
+    }
+    const {
+      creditScore, monthlyDebt, monthlyIncome,
+      bankruptcies, delinquencies,
+      vehicleValue, loanAmount,
+    } = request.body;
+
+    const updatedLoanApplication = loanApplicationService.updateLoanApplication(
+      loanApplication,
+      {
+        creditScore,
+        monthlyDebt,
+        monthlyIncome,
+        bankruptcies,
+        delinquencies,
+        vehicleValue,
+        loanAmount,
+      },
+    );
+    response.send(updatedLoanApplication);
+  }
+
+
   private routes() {
+    this.router.delete('/:id/application', this._delete);
     this.router.get('/', this._getAllUsers);
     this.router.post('/', this._createUser);
     this.router.get('/:id', this._getUser);
+    this.router.patch('/users/:id/application', this._updateLoanApplication);
     this.router.post('/:userId/applications', this._createLoanApplication);
     this.router.post('/:id/application/submit', this._submitLoanApplication);
   }

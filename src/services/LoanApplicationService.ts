@@ -34,6 +34,16 @@ export async function deleteLoanApplication(id: string): Promise<boolean> {
   return deletedApplication.id === id && deletedApplication.deletedAt != null;
 }
 
+export async function deleteLoanApplicationByUserId(userId: string) {
+  const loanApplication = await getLoanApplicationByUserId(userId);
+  if (!loanApplication) {
+    return false;
+  }
+
+  const deletedApplication = await getRepository(LoanApplication).softRemove(loanApplication);
+  return deletedApplication.id === loanApplication.id && deletedApplication.deletedAt != null;
+}
+
 export async function getLoanApplicationById(id:string): Promise<LoanApplication | undefined> {
   return getRepository(LoanApplication).findOne({
     where: { id, deletedAt: IsNull() },

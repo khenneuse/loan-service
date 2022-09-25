@@ -5,6 +5,7 @@ This list could easily be prioritized into further milestones of work depending 
 
 ## General Functionality
 ### Missing endpoints
+2022-09-25: updated in branch v1-upgrades
 There were two endpoints that I decided not to implement. My reason for not doing them is that they were repeats of the other two endpoints that are from the loan applications side. They are:
 - `PATCH /users/{id}/application`
 - `DELETE /users/{id}/application`
