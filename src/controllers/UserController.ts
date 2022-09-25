@@ -2,8 +2,8 @@ import { Request, Response, Router } from 'express';
 import { getRepository, IsNull } from 'typeorm';
 import { inspect } from 'util';
 import { v4 as uuidV4 } from 'uuid';
-import { LoanApplication } from '../entity/LoanApplication';
-import { User } from '../entity/User';
+import { LoanApplication } from '../entities/LoanApplication';
+import { User } from '../entities/User';
 import { makeLoanDecision } from '../lib/LoanDecider';
 
 export class UserController {

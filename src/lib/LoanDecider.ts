@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { pmt } from 'financial';
-import { LoanApplication } from '../entity/LoanApplication';
+import { LoanApplication } from '../entities/LoanApplication';
 
 export type LoanDecision = LoanAccept | LoanReject;
 export interface LoanAccept {

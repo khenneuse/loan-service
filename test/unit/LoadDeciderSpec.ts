@@ -1,4 +1,4 @@
-import { LoanApplication } from '../../src/entity/LoanApplication';
+import { LoanApplication } from '../../src/entities/LoanApplication';
 import { makeLoanDecision, forUnitTestingOnly } from '../../src/lib/LoanDecider';
 
 describe('LoanDecider', () => {

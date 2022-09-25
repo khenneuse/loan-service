@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
 import { getRepository, IsNull } from 'typeorm';
-import { LoanApplication } from '../entity/LoanApplication';
+import { LoanApplication } from '../entities/LoanApplication';
 import { makeLoanDecision } from '../lib/LoanDecider';
 
 export class LoanApplicationController {
