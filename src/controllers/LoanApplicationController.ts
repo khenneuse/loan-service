@@ -1,6 +1,6 @@
+/* eslint-disable no-underscore-dangle */
 import { Request, Response, Router } from 'express';
-import { getRepository, IsNull } from 'typeorm';
-import { LoanApplication } from '../entities/LoanApplication';
+import * as loanApplicationService from '../services/LoanApplicationService';
 import { makeLoanDecision } from '../lib/LoanDecider';
 
 export class LoanApplicationController {
@@ -11,24 +11,23 @@ export class LoanApplicationController {
     this.routes();
   }
 
-  private async delete(request: Request, response: Response) {
+  private async _delete(request: Request, response: Response) {
     const { id } = request.params;
-    const loanApplication = await getRepository(LoanApplication).findOne({
-      where: { id, deletedAt: IsNull() },
-    });
-    if (!loanApplication) {
-      response.status(400).send(`No loan application with id ${id}`);
+    if (!id) {
+      response.status(400).send('Id is required to delete a loan application');
       return;
     }
-    await getRepository(LoanApplication).softRemove(loanApplication);
-    response.send(`Loan application ${id} was deleted`);
+    const deleted = loanApplicationService.deleteLoanApplication(id);
+    response.send(`Loan application ${id} was deleted: ${deleted}`);
   }
 
-  private async submit(request: Request, response: Response) {
+  private async _submit(request: Request, response: Response) {
     const { id } = request.params;
-    const loanApplication = await getRepository(LoanApplication).findOne({
-      where: { id, deletedAt: IsNull() },
-    });
+    if (!id) {
+      response.status(400).send('Id is required to submit a loan application');
+      return;
+    }
+    const loanApplication = await loanApplicationService.getLoanApplicationById(id);
     if (!loanApplication) {
       response.status(400).send(`No loan application with id ${id}`);
       return;
@@ -36,11 +35,13 @@ export class LoanApplicationController {
     response.send(makeLoanDecision(loanApplication));
   }
 
-  private async update(request: Request, response: Response) {
+  private async _update(request: Request, response: Response) {
     const { id } = request.params;
-    const loanApplication = await getRepository(LoanApplication).findOne({
-      where: { id, deletedAt: IsNull() },
-    });
+    if (!id) {
+      response.status(400).send('Id is required to update a loan application');
+      return;
+    }
+    const loanApplication = await loanApplicationService.getLoanApplicationById(id);
     if (!loanApplication) {
       response.status(400).send(`No loan application with id ${id}`);
       return;
@@ -50,31 +51,25 @@ export class LoanApplicationController {
       bankruptcies, delinquencies,
       vehicleValue, loanAmount,
     } = request.body;
-    const updatedFields = {
-      creditScore,
-      monthlyDebt,
-      monthlyIncome,
-      bankruptcies,
-      delinquencies,
-      vehicleValue,
-      loanAmount,
-    };
 
-    // Get only modified values
-    Object.keys(updatedFields).forEach((key) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      (updatedFields as any)[key] === undefined ? delete (updatedFields as any)[key] : {};
-    });
-    const updatedLoanApplication = await getRepository(LoanApplication).save({
-      ...loanApplication,
-      ...updatedFields,
-    });
+    const updatedLoanApplication = loanApplicationService.updateLoanApplication(
+      loanApplication,
+      {
+        creditScore,
+        monthlyDebt,
+        monthlyIncome,
+        bankruptcies,
+        delinquencies,
+        vehicleValue,
+        loanAmount,
+      },
+    );
     response.send(updatedLoanApplication);
   }
 
   private routes() {
-    this.router.delete('/:id', this.delete);
-    this.router.patch('/:id', this.update);
-    this.router.post('/:id/submit', this.submit);
+    this.router.delete('/:id', this._delete);
+    this.router.patch('/:id', this._update);
+    this.router.post('/:id/submit', this._submit);
   }
 }
