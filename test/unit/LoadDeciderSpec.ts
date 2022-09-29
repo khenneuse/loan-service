@@ -1,9 +1,9 @@
-import { LoanApplication } from '../../src/entities/LoanApplication';
+import { LoanApplicationDTO } from '../../src/services/dtos';
 import { makeLoanDecision, forUnitTestingOnly } from '../../src/lib/LoanDecider';
 
 describe('LoanDecider', () => {
   describe('makeLoanDecision', () => {
-    let loanApplication: LoanApplication;
+    let loanApplication: LoanApplicationDTO;
 
     beforeEach(() => {
       loanApplication = {
@@ -16,7 +16,7 @@ describe('LoanDecider', () => {
         delinquencies: 0,
         vehicleValue: 45_000.00,
         loanAmount: 25_000.00,
-      } as LoanApplication;
+      } as LoanApplicationDTO;
     });
 
     describe('loan acceptance cases', () => {

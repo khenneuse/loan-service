@@ -133,7 +133,6 @@ export class UserController {
     response.send(updatedLoanApplication);
   }
 
-
   private routes() {
     this.router.delete('/:id/application', this._delete);
     this.router.get('/', this._getAllUsers);
