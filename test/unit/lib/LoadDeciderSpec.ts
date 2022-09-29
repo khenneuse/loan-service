@@ -1,5 +1,5 @@
-import { LoanApplicationDTO } from '../../src/services/dtos';
-import { makeLoanDecision, forUnitTestingOnly } from '../../src/lib/LoanDecider';
+import { LoanApplicationDTO } from '../../../src/services/dtos';
+import { makeLoanDecision, forUnitTestingOnly } from '../../../src/lib/LoanDecider';
 
 describe('LoanDecider', () => {
   describe('makeLoanDecision', () => {
