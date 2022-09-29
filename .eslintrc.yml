@@ -7,7 +7,7 @@ parserOptions:
 overrides:
   # Special rules for TypeORM entity decorators
   - files:
-      - src/entity/*.ts
+      - src/entities/*.ts
     rules:
       new-cap: 'off'
   # Special rules for TypeORM migrations

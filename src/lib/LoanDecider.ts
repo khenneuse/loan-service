@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { pmt } from 'financial';
-import { LoanApplication } from '../entity/LoanApplication';
+import { LoanApplicationDTO } from '../services/dtos';
 
 export type LoanDecision = LoanAccept | LoanReject;
 export interface LoanAccept {
@@ -18,7 +18,7 @@ export interface LoanReject {
 const TERM_LENGTH_MONTHS = 72;
 const ALLOWED_DEBT = 0.60; // 60%
 
-export function makeLoanDecision(loanApplication: LoanApplication): LoanDecision {
+export function makeLoanDecision(loanApplication: LoanApplicationDTO): LoanDecision {
   const {
     creditScore, monthlyDebt, monthlyIncome, loanAmount,
   } = loanApplication;
@@ -40,7 +40,7 @@ export function makeLoanDecision(loanApplication: LoanApplication): LoanDecision
   return buildAcceptance(apr, monthlyPayment);
 }
 
-function getInitialRejectionReasonIfAny(loanApplication: LoanApplication): string [] {
+function getInitialRejectionReasonIfAny(loanApplication: LoanApplicationDTO): string [] {
   const reasons: string[] = [];
   if (loanApplication.creditScore < 660) {
     reasons.push('Low Credit Score');
